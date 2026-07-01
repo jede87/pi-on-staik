@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "staik": {
+      "baseUrl": "https://api.staik.se/v1",
+      "api": "openai-completions",
+      "apiKey": "$STAIK_API_KEY",
+      "headers": {
+        "X-Staik-Web-Search": "1"
+      },
+      "compat": {
+        "supportsDeveloperRole": false,
+        "supportsReasoningEffort": false
+      },
+      "models": [
+        {
+          "id": "qwen3.5:35b-a3b",
+          "name": "Qwen 3.5 35B-A3B (Staik)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 262144,
+          "maxTokens": 32768
+        },
+        {
+          "id": "qwen3.5:35b-a3b-thinking",
+          "name": "Qwen 3.5 35B-A3B Thinking (Staik)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 262144,
+          "maxTokens": 32768
+        },
+        {
+          "id": "qwen3.5:9b",
+          "name": "Qwen 3.5 9B (Staik)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 8192
+        },
+        {
+          "id": "qwen3.5:9b-thinking",
+          "name": "Qwen 3.5 9B Thinking (Staik)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 8192
+        },
+        {
+          "id": "gemma4:31b",
+          "name": "Gemma 4 31B (Staik)",
+          "reasoning": false,
+          "input": ["text", "image"],
+          "contextWindow": 98304,
+          "maxTokens": 4096
+        }
+      ]
+    }
+  }
+}

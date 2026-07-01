@@ -1,0 +1,19 @@
+#!/bin/sh
+# pre-push gate: a shippable web app must have a GREEN e2e suite.
+# Enforces the "verify the running app" rule mechanically — you can't push
+# a Next/React app without end-to-end coverage that passes.
+# Skips non-web projects (libraries/CLIs). Bypass in a real emergency with --no-verify.
+
+if [ -f package.json ] && grep -qE '"(next|react)"[[:space:]]*:' package.json; then
+  if ! ls e2e/*.spec.* e2e/**/*.spec.* 2>/dev/null | grep -q .; then
+    echo "✗ Push blocked: this web app has no e2e/ Playwright suite." >&2
+    echo "  Add end-to-end tests for the main user flows, then push." >&2
+    exit 1
+  fi
+  echo "→ pre-push: running e2e suite (npx playwright test)…" >&2
+  if ! npx playwright test >&2; then
+    echo "✗ Push blocked: e2e suite is not green. Fix it, then push." >&2
+    exit 1
+  fi
+  echo "✓ e2e green — push allowed." >&2
+fi

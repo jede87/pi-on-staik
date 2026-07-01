@@ -1,0 +1,32 @@
+{
+  "lastChangelogVersion": "0.80.2",
+  "theme": "dark",
+  "defaultProvider": "staik",
+  "defaultModel": "qwen3.5:35b-a3b-thinking",
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:pi-mcp-adapter",
+    "npm:@plannotator/pi-extension",
+    "npm:pi-execution-time"
+  ],
+  "subagents": {
+    "agentOverrides": {
+      "context-builder": {
+        "tools": ["read", "grep", "find", "ls", "bash", "write", "web_search", "mcp", "intercom"],
+        "subagentOnlyExtensions": ["~/.pi/agent/extensions/web-search-tool.ts"]
+      },
+      "scout": {
+        "tools": ["read", "grep", "find", "ls", "bash", "write", "web_search", "mcp", "intercom"],
+        "subagentOnlyExtensions": ["~/.pi/agent/extensions/web-search-tool.ts"]
+      },
+      "researcher": {
+        "tools": ["read", "write", "web_search", "mcp", "intercom"],
+        "subagentOnlyExtensions": ["~/.pi/agent/extensions/web-search-tool.ts"]
+      },
+      "worker": {
+        "tools": ["read", "grep", "find", "ls", "bash", "edit", "write", "mcp", "contact_supervisor"]
+      }
+    }
+  }
+}

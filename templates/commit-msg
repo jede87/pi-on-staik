@@ -1,0 +1,12 @@
+#!/bin/sh
+# Enforce Conventional Commits: <type>: <summary>
+# Installed via: git config core.hooksPath .githooks
+msg=$(head -1 "$1")
+pattern='^(feat|fix|refactor|test|docs|chore|style|perf|build|ci)(\(.+\))?!?: .+'
+if ! printf '%s' "$msg" | grep -qE "$pattern"; then
+  echo "✗ Commit rejected — message must follow Conventional Commits:" >&2
+  echo "    <type>: <summary>" >&2
+  echo "  types: feat fix refactor test docs chore style perf build ci" >&2
+  echo "  e.g.   feat: add custom slug with collision retry" >&2
+  exit 1
+fi
